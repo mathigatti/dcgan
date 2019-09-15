@@ -27,7 +27,7 @@ tl.files.exists_or_mkdir(flags.sample_dir) # save generated image
 
 def get_celebA(output_size, n_epoch, batch_size):
     # dataset API and augmentation
-    images_path = tl.files.load_file_list(path='data', regx='.*.jpg', keep_prefix=True, printable=False)
+    images_path = tl.files.load_file_list(path='data', regx='*', keep_prefix=True, printable=False)
     def generator_train():
         for image_path in images_path:
             yield image_path.encode('utf-8')
@@ -37,7 +37,7 @@ def get_celebA(output_size, n_epoch, batch_size):
         image = tf.image.convert_image_dtype(image, dtype=tf.float32)
         # image = tf.image.crop_central(image, [FLAGS.output_size, FLAGS.output_size, FLAGS.c_dim])
         # image = tf.image.resize_images(image, FLAGS.output_size])
-        image = image[45:173, 25:153, :] # central crop
+        #image = image[45:173, 25:153, :] # central crop
         image = tf.image.resize([image], (output_size, output_size))[0]
         # image = tf.image.crop_and_resize(image, boxes=[[]], crop_size=[64, 64])
         # image = tf.image.resize_image_with_crop_or_pad(image, FLAGS.output_size, FLAGS.output_size) # central crop

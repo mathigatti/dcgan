@@ -10,7 +10,8 @@ num_tiles = int(np.sqrt(flags.sample_size))
 
 def train():
     images, images_path = get_celebA(flags.output_size, flags.n_epoch, flags.batch_size)
-    print(images)
+    print("IMAGENES ENCONTRADAS",images)
+    print("\n\n\n")
     G = get_generator([None, flags.z_dim])
     D = get_discriminator([None, flags.output_size, flags.output_size, flags.c_dim])
 
